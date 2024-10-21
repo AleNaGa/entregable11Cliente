@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Alejandro" mail="alejandro.navarro@a.vedrunasevillasj.es">
+    <meta description="Tarea de Consumo de la API de Productos">
+    <meta keywords="HTML, CSS, JavaScript">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ConsumirProductos</title>
+</head>
+<body>
+    <div class="grid grid-cols-3 gap-4 bg-gray-200 p-4 rounded text-center items-center border-slate-500 cards" id="cards">
+
+    </div>
+    <div class="justify-left items-left mt-4 bg-gray-300 p-4 rounded w-1/5" id="form">
+        <form id="form" class="flex flex-col gap-2">
+            <label for="product_name">Nombre del Producto</label>
+            <input class="rounded" type="text" id="productName" name="ProductName" autocomplete="off">
+            <label for="product_price">Precio</label>
+            <input class="rounded" type="text" id="productPrice" name="ProductPrice" autocomplete="off">
+            <input type="submit" value="Submit" class="bg-black text-white p-2 rounded">
+        </form>
+    </div>
+    
+
+    <script src="app.js"></script>
+</body>
+</html>
