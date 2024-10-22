@@ -1,17 +1,18 @@
 $url = `http://localhost:8080/api/v1/products`;
-$post = 'POST';
-$delete = 'DELETE';
 
 window.onload = () => {
     console.log('Cargando...');
     getProducts();
 }
 
+
 document.getElementById('form').addEventListener('submit', (event) => {
     event.preventDefault();
     const $name = document.getElementById('productName').value;
     const $price = document.getElementById('productPrice').value;
-    parseInt($price);
+    document.getElementById('productName').value = '';
+    document.getElementById('productPrice').value = '';
+    parseFloat($price);
     addProduct($name, $price);
 });
 
@@ -35,27 +36,35 @@ function getProducts(){
         console.log('Fetch error:', error); 
     });
 }
-
-function addProduct($name, $price){
-    $url = $url+'/'+'insert';
-    fetch($url,{
-        method: $post,
-        mode: 'no-cors', 
+function addProduct($name, $price) {
+    fetch($url + '/insert', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',  // Asegúrate de tener el encabezado
+        },
         body: JSON.stringify({
-            name: $name,
-            price: $price
+            productName: $name,
+            productPrice: $price
         }),
-    }).then((data) => {
-        console.log(data);
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
         getProducts();
-    }).catch((error) => {
-        console.log(error);
+        return response;
+    })
+    .then((data) => {
+        console.log('Producto agregado:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
 }
 
 function deleteProduct($id){
     fetch($url +'/delete/' + $id, {
-        method: $delete
+        method: 'DELETE',
     }).then((data) => {
         console.log(data);
         getProducts();
@@ -79,15 +88,14 @@ function renderProducts(data){
         //PRECIO
         const $cardPrice = document.createElement('p');
         $cardPrice.classList.add('price');
-        $cardPrice.textContent = element.productPrice;
+        $cardPrice.textContent = element.productPrice + "€";
         //BORRADO
         const $cardButton = document.createElement('button');
         $cardButton.classList.add('button');
         $cardButton.textContent = 'Delete';
         $cardButton.addEventListener('click', () => {
             deleteProduct(element.productId);
-            $products = getProducts();
-            renderProducts($products);
+            getProducts();
         });
 
         //AGREGAR

@@ -8,11 +8,12 @@
     <meta author="Alejandro" mail="alejandro.navarro@a.vedrunasevillasj.es">
     <meta description="Tarea de Consumo de la API de Productos">
     <meta keywords="HTML, CSS, JavaScript">
+    <link rel="stylesheet" href="index.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>ConsumirProductos</title>
 </head>
 <body>
-    <div class="grid grid-cols-3 gap-4 bg-gray-200 p-4 rounded text-center items-center border-slate-500 cards" id="cards">
+    <div class="flex flex-row flex-wrap gap-1 bg-gray-200 p-4 rounded text-center items-center border-slate-500 cards" id="cards">
 
     </div>
     <div class="justify-left items-left mt-4 bg-gray-300 p-4 rounded w-1/5" id="form">
@@ -20,8 +21,8 @@
             <label for="product_name">Nombre del Producto</label>
             <input class="rounded" type="text" id="productName" name="ProductName" autocomplete="off">
             <label for="product_price">Precio</label>
-            <input class="rounded" type="text" id="productPrice" name="ProductPrice" autocomplete="off">
-            <input type="submit" value="Submit" class="bg-black text-white p-2 rounded">
+            <input class="rounded" type="float" id="productPrice" name="ProductPrice" autocomplete="off">
+            <input type="submit" type="reset" value="Submit" class="bg-black text-white p-2 rounded">
         </form>
     </div>
     
